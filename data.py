@@ -16,13 +16,18 @@ QUERY_DELAYED_FLIGHT_BY_AIRPORT = """
 SELECT flights.*, airlines.airline, flights.ID as FLIGHT_ID, flights.DEPARTURE_DELAY as DELAY 
 FROM flights 
 JOIN airlines ON flights.airline = airlines.id 
-WHERE flights.origin_airport = :airport AND flights.arrival_delay > 0"""
+WHERE flights.origin_airport = :airport 
+AND DELAY > 0 
+AND DELAY != ''
+"""
 
 QUERY_DELAYED_FLIGHT_BY_AIRLINE = """
 SELECT flights.*, airlines.airline, flights.ID as FLIGHT_ID, flights.DEPARTURE_DELAY as DELAY 
 FROM flights 
 JOIN airlines ON flights.airline = airlines.id 
-WHERE airlines.airline = :airline AND flights.arrival_delay > 0"""
+WHERE airlines.airline = :airline 
+AND DELAY > 0 
+AND DELAY != ''"""
 
 class FlightData:
     """
